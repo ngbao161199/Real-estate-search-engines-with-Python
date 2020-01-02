@@ -1,0 +1,54 @@
+<!-- Adding some style to table (OPTIONAL) -->
+<style type="text/css"> 
+      
+    th:tr{ 
+        color: blue; 
+  
+    } 
+    tr:nth-of-type(2n){ 
+        border: 1px solid black; 
+        background-color: rgba(150, 150, 150, 0.5); 
+  
+    } 
+  
+    td{ 
+        padding: 8px 8px; 
+        border: 1px solid black; 
+    } 
+</style> 
+
+{% block body%}
+
+<div class="search">
+    <h1 style="text-align: center">Search</h1>
+    <nav style="text-align:center;width:500px;margin-left:auto;margin-right:auto" class="navbar navbar-light bg-light">
+        <form style="width:100%;" class="form-inline" name="passQuery"  action="/searchQuery" method="POST">
+            <input style="width:78%;margin-left:auto;margin-right:auto" class="form-control mr-sm-2" type="text" name="query" placeholder="Search" aria-label="Search">
+            <button style="width:18%;margin-left:auto;margin-right:auto" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+</div>
+<h4 style="text-align: center;color:green;">Searched Query : {{ q }}</h4>
+
+<table style="margin-left: 20px;"> 
+    <!-- Table headers -->
+        <th> 
+            <tr style="color: green; ">     
+            <td>No.</td> 
+            <td>Real Estate</td> 
+            <td>Detail</td>
+            <td>Cosine</td>
+    </tr> 
+        </th> 
+
+{% for i in range(leng) %}
+<tr> 
+    <td>{{i}}</td>
+    <td><a href="{{link[i]}}"> {{ result[i] }}</a></td>
+    <td>{{detail[i]}}</td>
+    <td>{{score[i]}} </td>
+{% endfor %}
+</tr> 
+  
+</table> 
+{% endblock%}
